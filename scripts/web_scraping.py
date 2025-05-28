@@ -31,7 +31,7 @@ def get_qb_stats(driver, year):
 
     # Obtener los datos del elemento <pre>
     pre_element = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.ID, "csv_adv_receiving"))
+        EC.presence_of_element_located((By.ID, "csv_receiving"))
     )
     csv_data = pre_element.text
 
@@ -47,7 +47,7 @@ service = Service(executable_path=path)
 driver = webdriver.Chrome(service=service)
 
 try:
-    for year in range(2018, 2025):
+    for year in range(2023, 2025):
         get_qb_stats(driver, year)
         time.sleep(3)  # Espera entre peticiones para evitar bloqueos del sitio
 
