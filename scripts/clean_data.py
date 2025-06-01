@@ -1,7 +1,3 @@
-import pandas as pd
-import csv
-import os
-
 import csv
 
 def clean_data(year):
@@ -37,7 +33,9 @@ def clean_data(year):
     for line in cleaned_lines:
         # Aseguramos que la línea no esté vacía (por si acaso)
         if line.strip():
-            csv_data.append(line.strip().split(','))
+            # Dividimos la línea y eliminamos la primera columna (índice 0)
+            row = line.strip().split(',')[1:]  # <-- Esta es la línea clave que elimina la columna 'rk'
+            csv_data.append(row)
 
     # Guardamos los datos procesados en un archivo CSV
     with open(output_file, 'w', newline='') as f:
