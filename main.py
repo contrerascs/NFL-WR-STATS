@@ -15,21 +15,18 @@ st.set_page_config(
 df = load_dataset()
 
 # Capturar selección del usuario
-selected_wr1, selected_wr2, selected_season = render_sidebar(df)
+selected_wr1, selected_season = render_sidebar(df)
 
 # Filtrar DataFrame por la temporada seleccionada
 df_season = df[df['Season'] == selected_season]
 
 # Verificar si los jugadores están en la temporada seleccionada
 wr1_exists = selected_wr1 in df_season['Player'].values
-wr2_exists = selected_wr2 in df_season['Player'].values
 
-if not wr1_exists or not wr2_exists:
+if not wr1_exists:
     # Mostrar advertencias si un jugador no jugó en la temporada seleccionada
     if not wr1_exists:
         st.warning(f"⚠️ {selected_wr1} not played in season {selected_season}.")
-    if not wr2_exists:
-        st.warning(f"⚠️ {selected_wr2} not played in season {selected_season}.")
 else:
     pass
     # Mostrar comparación solo si ambos jugadores jugaron en la temporada seleccionada

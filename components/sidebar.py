@@ -14,24 +14,10 @@ def render_sidebar(df):
         # Filtrar el dataframe por la temporada seleccionada
         season_df = df[df["Season"] == selected_season]
         
-        # Obtener lista de QBs que jugaron en esa temporada
+        # Obtener lista de WRs que jugaron en esa temporada
         wr_list = season_df["Player"].unique().tolist()
         
-        # Verificar que haya al menos 2 QBs en la temporada seleccionada
-        if len(wr_list) < 2:
-            st.warning(f"¡Solo hay {len(wr_list)} WR(s) en la temporada {selected_season}!")
-            if len(wr_list) == 1:
-                return wr_list[0], None, selected_season
-            else:
-                return None, None, selected_season
-        
-        # Selección del primer QB
+        # Selección del WR
         selected_wr1 = st.selectbox("Select a wide receiber", wr_list, key='wr1')
-        
-        # Filtrar la lista para el segundo selectbox (excluyendo el primero)
-        wr_list_filtered = [wr for wr in wr_list if wr != selected_wr1]
-        
-        # Selección del segundo QB (sin incluir el primero seleccionado)
-        selected_wr2 = st.selectbox("Select a wide receiber", wr_list_filtered, key='wr2')
 
-    return selected_wr1, selected_wr2, selected_season
+    return selected_wr1, selected_season
