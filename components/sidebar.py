@@ -18,10 +18,15 @@ def render_seasons_info(col, wr_data):
         end_qb = wr_data['Season'].max()
         st.text(f'{start_qb} - {end_qb}')
 
-def render_sidebar(df):
+def render_sidebar(df,selected_wr,wr_id):
     # Renderiza la barra lateral completa.
     with st.sidebar:
         st.image('assets/logo.jpg', use_container_width=True)
+
+        col1, col2 = st.columns(2)
+
+        # Información del jugador
+        render_player_info(col1, selected_wr, wr_id)
 
         # Obtener lista de temporadas ordenadas (más recientes primero)
         season_list = sorted(df["Season"].unique().tolist(), reverse=True)
@@ -37,5 +42,7 @@ def render_sidebar(df):
         
         # Selección del WR
         selected_wr1 = st.selectbox("Select a wide receiber", wr_list, key='wr1')
+
+        print(wr_id)
 
     return selected_wr1, selected_season
