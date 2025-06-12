@@ -28,8 +28,11 @@ def join_data(year):
 
     df_complete = pd.merge(df_2, df, on='WR_ID')
 
+    # Filtrar solo WRs
+    wr_data = df_complete[df_complete['Pos'] == 'WR']
+
     # Guardar como CSV
-    df_complete.to_csv(outputfile, index=False, encoding="utf-8")
+    wr_data.to_csv(outputfile, index=False, encoding="utf-8")
 
     print(f"✅ Archivo convertido con éxito: {outputfile}")
 
@@ -57,7 +60,7 @@ def join_all_data():
     qb_complete = qb_complete.apply(pd.to_numeric, errors='ignore')
 
     # Guardar el DataFrame consolidado
-    qb_complete.to_csv('data/qb_complete_stats.csv', index=False)
+    qb_complete.to_csv('data/wr_complete_stats.csv', index=False)
 
     print(qb_complete[['Tgt', 'Rec', 'TD', 'Rat']].isna().sum())
 

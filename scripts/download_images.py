@@ -66,13 +66,12 @@ def download_player_image(player_id):
 
     print(f'Imagen de {player_id} descargada correctamente.')
 
-qb_consolidated = pd.read_csv('data/qb_complete_stats.csv')
-
-# Obtener los IDs únicos de los QB
-unique_qb_ids = qb_consolidated['WR_ID'].unique()
+# Abrir el archivo y leer las líneas
+with open('missing_images.txt', 'r', encoding='utf-8') as file:
+    jugadores = file.read().splitlines()  # Elimina saltos de línea (\n)
 
 # Iterar sobre cada ID único
-for qb_id in reversed(unique_qb_ids):
+for qb_id in jugadores:
     print(f'Procesando QB con ID: {qb_id}')
     # Aquí puedes llamar a la función download_player_image(qb_id)
     download_player_image(qb_id)
