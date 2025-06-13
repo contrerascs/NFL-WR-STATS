@@ -72,7 +72,9 @@ with open('missing_images.txt', 'r', encoding='utf-8') as file:
 
 # Iterar sobre cada ID único
 for qb_id in jugadores:
-    print(f'Procesando QB con ID: {qb_id}')
-    # Aquí puedes llamar a la función download_player_image(qb_id)
-    download_player_image(qb_id)
-    time.sleep(5)
+    # Eliminar la extensión .jpg (los últimos 4 caracteres)
+    qb_id_sin_ext = qb_id[:-4]
+    print(f'Procesando QB con ID: {qb_id_sin_ext}')
+    # Aquí puedes llamar a la función download_player_image(qb_id_sin_ext)
+    download_player_image(qb_id_sin_ext)
+    time.sleep(3)
