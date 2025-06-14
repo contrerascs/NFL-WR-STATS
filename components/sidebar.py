@@ -27,6 +27,8 @@ def render_sidebar(df,selected_wr,wr_id):
 
         # Información del jugador
         render_player_info(col1, selected_wr, wr_id)
+        wr_data = df[df["Player"] == selected_wr]
+        render_seasons_info(col2,wr_data)
 
         # Filtrar el dataframe por el jugador seleccionado
         season_df = df[df["Player"] == selected_wr]
