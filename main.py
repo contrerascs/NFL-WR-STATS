@@ -5,7 +5,7 @@ from components.sidebar import render_sidebar
 
 # Configuración inicial de Streamlit
 st.set_page_config(
-    page_title='Fantasy Football',
+    page_title='The Best Wide Receiber',
     page_icon=':football:',
     layout='wide',
     initial_sidebar_state='expanded',
@@ -29,3 +29,9 @@ selected_season = render_sidebar(df,selected_wr,wr_id)
 
 # Filtrar DataFrame por la temporada seleccionada
 df_season = df[df['Season'] == selected_season]
+
+# Si se seleccionó una temporada específica, renderizamos las gráficas
+if selected_season != "Toda la carrera":
+    pass
+else:
+    pass

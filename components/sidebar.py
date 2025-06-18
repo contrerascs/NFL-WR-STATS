@@ -34,7 +34,7 @@ def render_sidebar(df,selected_wr,wr_id):
         season_df = df[df["Player"] == selected_wr]
 
         # Obtener lista de temporadas ordenadas (más recientes primero)
-        season_list = sorted(season_df["Season"].unique().tolist(), reverse=True)
+        season_list = ["Toda la carrera"] + sorted(season_df["Season"].unique().tolist(), reverse=True)
         
         # Selección de temporada
         selected_season = st.selectbox('Select a season', season_list, key='season')
