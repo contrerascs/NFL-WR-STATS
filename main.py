@@ -2,6 +2,7 @@ import streamlit as st
 
 from helpers.data_loader import load_dataset
 from components.sidebar import render_sidebar
+from components.render_season_metrics import render_season_metrics
 
 # Configuración inicial de Streamlit
 st.set_page_config(
@@ -32,6 +33,6 @@ df_season = df[df['Season'] == selected_season]
 
 # Si se seleccionó una temporada específica, renderizamos las gráficas
 if selected_season != "Toda la carrera":
-    pass
+    render_season_metrics(df,selected_season,selected_wr,wr_id)
 else:
     pass
