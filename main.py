@@ -33,6 +33,6 @@ df_season = df[df['Season'] == selected_season]
 
 # Si se seleccionó una temporada específica, renderizamos las gráficas
 if selected_season != "Toda la carrera":
-    render_season_metrics(wr_data,selected_season,selected_wr,wr_id)
+    render_season_metrics(wr_data,selected_season,selected_wr,df_season)
 else:
     pass

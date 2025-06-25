@@ -50,18 +50,21 @@ def join_all_data():
     qb_complete = pd.concat(qb_dataframes, ignore_index=True)
 
     # Columnas donde NaN debe reemplazarse con 0 (ajusta según tus columnas reales)
-    zero_columns = ['G', 'GS', 'Tgt', 'Rec', 'Yds', '1D', 'YBC', 'YAC', 
-                    'BrkTkl', 'Drop', 'R/G', 'Y/G', 'Y/Tgt']
+    zero_columns = ['G', 'GS', 'Tgt', 'Rec', 'Yds', '1D', 'YBC', 'YAC','Lng', 
+                    'BrkTkl', 'Drop', 'R/G', 'Y/G', 'Y/Tgt','TD','Int','Fmb']
 
     # Aplicar reemplazo solo en las columnas seleccionadas
     qb_complete[zero_columns] = qb_complete[zero_columns].fillna(0)
+
+    columnas_a_int = ['Age','G','GS','Tgt','Rec','Yds','1D','TD','Drop','Int','YBC','YAC','BrkTkl','Lng','Fmb']
+
+    # Convertir solo esas columnas a int
+    qb_complete[columnas_a_int] = qb_complete[columnas_a_int].astype(int)
 
     # Convertir columnas numéricas (esto ahora es más seguro)
     qb_complete = qb_complete.apply(pd.to_numeric, errors='ignore')
 
     # Guardar el DataFrame consolidado
     qb_complete.to_csv('data/wr_complete_stats.csv', index=False)
-
-    print(qb_complete[['Tgt', 'Rec', 'TD', 'Rat']].isna().sum())
 
 join_all_data()
