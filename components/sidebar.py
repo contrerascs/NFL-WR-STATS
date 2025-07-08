@@ -18,9 +18,9 @@ def render_seasons_info(col, wr_data):
         end_qb = wr_data['Season'].max()
         st.text(f'{start_qb} - {end_qb}')
         st.subheader(':gray[Equipos]', divider="gray")
-        start_qb = wr_data['Season'].min()
-        end_qb = wr_data['Season'].max()
-        st.text(f'{start_qb} - {end_qb}')
+        teams = wr_data['Team']
+        team = teams.unique()
+        st.text(f'{team}')
 
 def render_sidebar(df,selected_wr,wr_id):
     # Renderiza la barra lateral completa.
