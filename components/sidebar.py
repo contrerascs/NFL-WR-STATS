@@ -1,6 +1,7 @@
 import streamlit as st
 
 from helpers.data_utils import get_image_path
+from helpers.data_utils import TEAM_NAMES
 
 def render_player_info(col, selected_wr, wr_id):
     # Renderiza la información del jugador en la barra lateral.
@@ -17,10 +18,12 @@ def render_seasons_info(col, wr_data):
         start_qb = wr_data['Season'].min()
         end_qb = wr_data['Season'].max()
         st.text(f'{start_qb} - {end_qb}')
+
         st.subheader(':gray[Equipos]', divider="gray")
         teams = wr_data['Team']
-        team = teams.unique()
-        st.text(f'{team}')
+        for team in teams.unique():
+            name = TEAM_NAMES[team]
+            st.text(f'{name}')
 
 def render_sidebar(df,selected_wr,wr_id):
     # Renderiza la barra lateral completa.
