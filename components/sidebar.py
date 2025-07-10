@@ -22,8 +22,9 @@ def render_seasons_info(col, wr_data):
         st.subheader(':gray[Equipos]', divider="gray")
         teams = wr_data['Team']
         for team in teams.unique():
-            name = TEAM_NAMES[team]
-            st.text(f'{name}')
+            if team != '2TM':
+                name = TEAM_NAMES[team]
+                st.text(f'{name}')
 
 def render_sidebar(df,selected_wr,wr_id):
     # Renderiza la barra lateral completa.
