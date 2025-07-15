@@ -64,6 +64,10 @@ def join_all_data():
     # Convertir columnas numéricas (esto ahora es más seguro)
     qb_complete = qb_complete.apply(pd.to_numeric, errors='ignore')
 
+    columnas_clave = ['Player','Age','Team','Pos']
+
+    qb_complete = qb_complete.drop_duplicates(subset=columnas_clave)
+
     # Guardar el DataFrame consolidado
     qb_complete.to_csv('data/wr_complete_stats.csv', index=False)
 
