@@ -41,7 +41,8 @@ def render_season_metrics(wr_data,selected_season,selected_wr,df):
     df_season = wr_data[wr_data["Season"] == selected_season]
     st.title(f'{selected_wr} stats in {selected_season}')
 
-    print(df.head())
+    if df['Team'] == '2TM':
+        pass
 
     stats = ['Tgt','Rec','Yds','Y/R','Y/G','TD','YAC']
     
