@@ -6,7 +6,7 @@ def rank_in_stat(week_data,player,stat):
     player_data = week_data[week_data['Player'] == player]
     metric = player_data[stat].sum()
     
-    print(player_data.head())
+    #print(player_data.head())
 
     titulos = {
         'Tgt':'Targets',
@@ -41,13 +41,19 @@ def render_season_metrics(wr_data,selected_season,selected_wr,df):
     df_season = wr_data[wr_data["Season"] == selected_season]
     st.title(f'{selected_wr} stats in {selected_season}')
 
-    if df['Team'] == '2TM':
-        pass
-
     stats = ['Tgt','Rec','Yds','Y/R','Y/G','TD','YAC']
+
+    df_tm = df_season[df_season['Team'] == '2TM']
     
-    columns = st.columns(7)
-    
-    for col, stat in zip(columns, stats):
-        with col:
-            rank_in_stat(df,selected_wr,stat)
+    print(df_tm['Team'].values[0])
+
+    if df_tm['Team'].values[0] == '2TM':
+        columns = st.columns(7)
+        for col, stat in zip(columns, stats):
+            with col:
+                rank_in_stat(df_tm,selected_wr,stat)
+    else:        
+        columns = st.columns(7)
+        for col, stat in zip(columns, stats):
+            with col:
+                rank_in_stat(df,selected_wr,stat)
