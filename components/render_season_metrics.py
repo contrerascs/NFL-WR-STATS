@@ -4,9 +4,23 @@ import pandas as pd
 
 def rank_in_stat(week_data,player,stat):
     player_data = week_data[week_data['Player'] == player]
+    df_tm = player_data[player_data['Team'] == '2TM']
+    if df_tm['Team'].values == '2TM':
+        player_data = df_tm
+        print(player_data)
+
     metric = player_data[stat].sum()
-    
+
     #print(player_data.head())
+
+    #df_tm = player_data[player_data['Team'] == '2TM']
+    
+    #print(df_tm['Team'].values[0])
+    #print(df_tm.head())
+
+    #if df_tm['Team'].values == '2TM':
+    #    player_data = df_tm
+    #    print(player_data)
 
     titulos = {
         'Tgt':'Targets',
@@ -44,16 +58,8 @@ def render_season_metrics(wr_data,selected_season,selected_wr,df):
     stats = ['Tgt','Rec','Yds','Y/R','Y/G','TD','YAC']
 
     df_tm = df_season[df_season['Team'] == '2TM']
-    
-    print(df_tm['Team'].values[0])
 
-    if df_tm['Team'].values[0] == '2TM':
-        columns = st.columns(7)
-        for col, stat in zip(columns, stats):
-            with col:
-                rank_in_stat(df_tm,selected_wr,stat)
-    else:        
-        columns = st.columns(7)
-        for col, stat in zip(columns, stats):
-            with col:
-                rank_in_stat(df,selected_wr,stat)
+    columns = st.columns(7)
+    for col, stat in zip(columns, stats):
+        with col:
+            rank_in_stat(df,selected_wr,stat)
