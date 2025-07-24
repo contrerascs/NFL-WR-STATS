@@ -11,17 +11,6 @@ def rank_in_stat(week_data,player,stat):
 
     metric = player_data[stat].sum()
 
-    #print(player_data.head())
-
-    #df_tm = player_data[player_data['Team'] == '2TM']
-    
-    #print(df_tm['Team'].values[0])
-    #print(df_tm.head())
-
-    #if df_tm['Team'].values == '2TM':
-    #    player_data = df_tm
-    #    print(player_data)
-
     titulos = {
         'Tgt':'Targets',
         'Rec':'Receptions',
