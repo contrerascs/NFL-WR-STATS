@@ -2,8 +2,8 @@
 import streamlit as st
 import pandas as pd
 
-def rank_in_stat(week_data,player,stat):
-    player_data = week_data[week_data['Player'] == player]
+def rank_in_stat(df,player,stat):
+    player_data = df[df['Player'] == player]
     df_tm = player_data[player_data['Team'] == '2TM']
     if df_tm['Team'].values == '2TM':
         player_data = df_tm
@@ -21,9 +21,9 @@ def rank_in_stat(week_data,player,stat):
         'TD':'Touchdowns'
     }   
 
-    week_data = week_data.sort_values(by=stat, ascending=False).reset_index(drop=True)
-    week_data[stat + "_rank"] = week_data[stat].rank(method="min", ascending=False)
-    rank = week_data.loc[week_data["Player"] == player, stat + "_rank"].values[0]
+    df = df.sort_values(by=stat, ascending=False).reset_index(drop=True)
+    df[stat + "_rank"] = df[stat].rank(method="min", ascending=False)
+    rank = df.loc[df["Player"] == player, stat + "_rank"].values[0]
 
     if stat == 'Int':
         if rank > 20:
