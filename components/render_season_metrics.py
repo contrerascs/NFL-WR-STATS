@@ -52,3 +52,6 @@ def render_season_metrics(wr_data,selected_season,selected_wr,df):
     for col, stat in zip(columns, stats):
         with col:
             rank_in_stat(df,selected_wr,stat)
+
+def render_season_plots():
+    pass
