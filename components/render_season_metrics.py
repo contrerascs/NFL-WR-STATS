@@ -53,5 +53,22 @@ def render_season_metrics(wr_data,selected_season,selected_wr,df):
         with col:
             rank_in_stat(df,selected_wr,stat)
 
-def render_season_plots():
-    pass
+def render_season_plots(wr_stats,selected_wr,selected_season):
+    # Gráfica de pastel: Pases Completos vs Incompletos
+    completos = wr_stats["Cmp%"]
+    incompletos = 100 - completos
+    labels = ["Pases Completos", "Pases Incompletos"]
+    values = [completos, incompletos]
+    colors = ["#1CB698", "#0a4237"]
+    
+    fig_pie = go.Figure(go.Pie(
+        labels=labels,
+        values=values,
+        hole=0.5,
+        marker=dict(colors=colors),
+        textinfo="percent"
+    ))
+    fig_pie.update_layout(
+        title=f"Porcentaje de Pases Completos de {selected_wr} en {selected_season}",
+        template="plotly_dark"
+    )
