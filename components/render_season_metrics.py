@@ -1,6 +1,7 @@
 # app/season_metrics.py
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
 
 def rank_in_stat(df,player,stat):
     player_data = df[df['Player'] == player]
