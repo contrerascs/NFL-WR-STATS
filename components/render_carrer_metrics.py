@@ -7,12 +7,12 @@ def render_carrer_metrics(wr_data,selected_wr):
     c1, c2, c3, c4, c5, c6 = st.columns(6)
     
     with c1:
-        games = int(wr_data["GS"].sum())
-        st.metric("Partidos Jugados",f"{games:,}",border=True)
+        games = int(wr_data["G"].sum())
+        st.metric("Games Played",f"{games:,}",border=True)
     
     with c2:
-        cmp_value = float(wr_data['Cmp%'].iloc[0])
-        st.metric('Cmp%',f"{round(cmp_value, 2)}%",border=True)
+        yds = int(wr_data['Yds'].sum())
+        st.metric('Yds',f"{round(yds, 2)}%",border=True)
     
     with c3:
         yards = int(wr_data["Yds"].sum())
